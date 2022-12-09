@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Blog by author {{ author }}</h1>
+    {% for post in posts %}
+
+<!--        <h1>{{ post.blog_by_author }}</h1>-->
+        <a href="/new_post_details/{{ post.id }}"><p>{{ post.title }}</p> </a>
+<!--        <td>-->
+<!--            <a href="/edit_post/{{ post.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>-->
+<!--            <a href="/destroy_post/{{ post.id }}">Delete</a>-->
+<!--            <a href="/blog_by_author/{{post.blog_by_author}}">Blog by Author</a>-->
+<!--        </td>-->
+    </hr>
+
+{% endfor %}
+</div>
+</body>
+</html>

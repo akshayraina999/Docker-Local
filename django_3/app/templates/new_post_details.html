@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+</head>
+<body>
+       <h1>{{ post.title }}</h1>
+        <p>{{ post.category }}</p>
+        <p>{{ post.body }}</p>
+        <p>{{ post.blog_by_author }}</p>
+
+<a href="/edit_post/{{ post.id }}"><span class="btn btn-warning btn-sm" >Edit</span></a>
+            <a href="/destroy_post/{{ post.id }}"><span class="btn btn-danger btn-sm">Delete</span> </a>
+</body>
+</html>

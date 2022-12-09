@@ -1,0 +1,64 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--  <link-->
+<!--      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"-->
+<!--      rel="stylesheet"-->
+<!--      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"-->
+<!--      crossorigin="anonymous"-->
+<!--    />-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Signup Form</h1>-->
+<!--  <form>-->
+<!--    <div class="mb-3">-->
+<!--    <label for="exampleInputName" class="form-label">Name</label>-->
+<!--    <input type="name" class="form-control" id="exampleInputName">-->
+<!--  </div>-->
+<!--    <div class="mb-3">-->
+<!--    <label for="exampleInputLastName" class="form-label">Last Name</label>-->
+<!--    <input type="name" class="form-control" id="exampleInputLastName">-->
+<!--  </div>-->
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Email address</label>-->
+<!--    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
+<!--    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+<!--  </div>-->
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputPassword1" class="form-label">Password</label>-->
+<!--    <input type="password" class="form-control" id="exampleInputPassword1">-->
+<!--  </div>-->
+<!--&lt;!&ndash;  <div class="mb-3 form-check">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="checkbox" class="form-check-input" id="exampleCheck1">&ndash;&gt;-->
+<!--&lt;!&ndash;    <label class="form-check-label" for="exampleCheck1">Check me out</label>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--  <button type="submit" class="btn btn-primary">Sign Up</button>-->
+<!--  <a href="/login/"><span class="btn btn-success">Login</span> </a>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
+{% endblock %}

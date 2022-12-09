@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+<div class="container">
+    {% for post in page_obj.object_list %}
+
+        <hr>
+<!--        <small>{{ post.id }}</small>-->
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.category }}</p>
+        <p>{{ post.body }}</p>
+        <p>{{ post.blog_by_author }}</p>
+        <td>
+            <a href="/edit_post/{{ post.id }}"><span class="btn btn-warning btn-sm" >Edit</span></a>
+            <a href="/destroy_post/{{ post.id }}"><span class="btn btn-danger btn-sm">Delete</span> </a>
+            <a href="/blog_by_author/{{ post.blog_by_author }}"><span class="btn btn-success btn-sm"> Blog by Author</span></a>
+        </td>
+    </hr>
+
+{% endfor %}
+<!--        {% for post in page_obj.object_list %}-->
+<!--          {# note that the list of posts are in the page_obj.object_list not page_obj #}-->
+<!--            <small>{{post.blog_id}}</small>-->
+<!--            <h1>{{post.title}}</h1>-->
+<!--            <p>{{post.body}}</p>-->
+<!--         {% endfor %}-->
+    </div>
+    <center>
+        {%if page_obj.has_previous %} {# whether the previous page exists #}
+            <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+        {% endif %}
+        <span>{{page_obj.number}}</span> {# the current page number #}
+
+        {%if page_obj.has_next %} {# whether the next page exists #}
+            <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+        {% endif %}
+    </center>
+
+<!--{% for contact in page_obj %}-->
+<!--    {# Each "contact" is a Contact model object. #}-->
+<!--    {{ contact.full_name|upper }}<br>-->
+<!--    ...-->
+<!--{% endfor %}-->
+
+<!--<div class="pagination">-->
+<!--    <span class="step-links">-->
+<!--        {% if page_obj.has_previous %}-->
+<!--            <a href="?page=1">&laquo; first</a>-->
+<!--            <a href="?page={{ page_obj.previous_page_number }}">previous</a>-->
+<!--        {% endif %}-->
+
+<!--        <span class="current">-->
+<!--            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.-->
+<!--        </span>-->
+
+<!--        {% if page_obj.has_next %}-->
+<!--            <a href="?page={{ page_obj.next_page_number }}">next</a>-->
+<!--            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>-->
+<!--        {% endif %}-->
+<!--    </span>-->
+<!--</div>-->
+{% if user.is_authenticated %}
+<center><a href="/new_post" class="btn btn-info">Add New Record</a></center>
+{% endif %}
+</body>
+</html>

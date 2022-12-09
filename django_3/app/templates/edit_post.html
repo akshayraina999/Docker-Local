@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<h1>{{post.id}}</h1>
+<form method="POST" class="post-form" action="/update_post/{{post.id}}">
+        {% csrf_token %}
+    <div class="container">
+<br>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Update Details {{post.id}}</h3>
+    </div>
+  </div>
+<!--    <div class="form-group row">-->
+<!--    <label class="col-sm-2 col-form-label">Blog Id:</label>-->
+<!--    <div class="col-sm-4">-->
+<!--        <input type="text" name="blog_id" id="id_bid" required maxlength="20" value="{{ post.blog_id }}"/>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Blog Name:</label>
+    <div class="col-sm-4">
+        <input type="text" name="title" id="id_title" required maxlength="100" value="{{ post.title }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Blog Body:</label>
+    <div class="col-sm-4">
+        <input type="text" name="body" id="id_body" required maxlength="254" value="{{ post.body }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Blog Category:</label>
+    <div class="col-sm-4">
+        <input type="text" name="category" id="id_category" required maxlength="15" value="{{ post.category }}" />
+    </div>
+  </div>
+        <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Blog Author:</label>
+    <div class="col-sm-4">
+        <input type="text" name="blog_by_author" id="id_blog_by_author" required maxlength="15" value="{{ post.blog_by_author }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <button type="submit" class="btn btn-success">Update</button>
+    </div>
+  </div>
+    </div>
+</form>
+</body>
+</html>
